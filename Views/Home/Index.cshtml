@@ -1,0 +1,137 @@
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnAddToList").click(function () {
+            AddToTheItemList();
+        });
+    });
+
+    function AddToTheItemList() {                                          ////////58.03
+        var tbl = $("#tbl");
+        var ToolName = $("#ToolName").val();
+        var CountTool = $("#txtTotal").val();
+        var FIO = $("#FIOName").val();
+        var ToolID = $("#Toolid").val();
+        var ToolList = "<tr><td hidden>" +
+            ToolID +
+            "</td><td>" +
+            ToolName +
+            "</td><td>" +
+            CountTool +
+            "</td><td>" +
+            FIO +
+            "</td><td>  <input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)' /></tr></tr>";
+
+        tbl.append(ToolList);
+        ResetItem();
+    }
+
+    function ResetItem() {
+        $("#ToolName").val('');
+        $("#txtTotal").val('');
+        $("#FIOName").val('');
+        $("#Toolid").val(0);
+    }
+
+    function RemoveItem(ToolID) {
+        $(ToolID).closest('tr').remove();        /////////1.06.00
+    }
+
+</script>
+
+<style>
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        xmin-width: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        width: 35%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: black;
+        color:white;
+    }
+</style>
+
+<fieldset>
+    <legend>Ввод данных</legend>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    ToolName :
+                    @Html.DropDownList("ToolName", new SelectList(Model.Item2, "Value", "Text"),
+                        new { @class = "form-control", @id = "ToolName" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    FIO :
+                    @Html.DropDownList("Users", new SelectList(Model.Item1, "Value", "Text"),
+                         new { @class = "form-control", @id = "FIOName" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    Total :
+                    <input type="text" id="txtTotal" value="0" name="Total" class="form-control" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="button" style="margin-top: 5px" value="Add To List" name="AddToList" id="btnAddToList" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+
+<fieldset>
+    <legend>Таблица данных</legend>
+    <table style="width: 100%" id="tbl">
+        <thead>
+            <tr>
+                <th hidden>
+                    Tool ID
+                </th>
+
+                <th>
+                    Tool Name
+                </th>
+
+                <th>
+                    Count Tool
+                </th>
+
+                <th>
+                    FIO
+                </th>
+
+            </tr>
+        </thead>
+    </table>
+</fieldset>
