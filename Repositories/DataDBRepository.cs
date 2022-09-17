@@ -45,7 +45,7 @@ namespace NPP.Repositories
             objNPPBASEEntities.SaveChanges();
             int userid = general.id;*/
 
-            foreach (var item in objgeneralToolModel.GeneralToolModels)
+   /*         foreach (var item in objgeneralToolModel.GeneralToolModels)
             {
                 Tool tool = new Tool();
                 tool.id = objgeneralToolModel.id;
@@ -61,7 +61,7 @@ namespace NPP.Repositories
                 objNPPBASEEntities.Users.Add(user);
                 objNPPBASEEntities.SaveChanges();
                 int userid = general.id;
-            }
+            }*/
 
             return true;
         }
