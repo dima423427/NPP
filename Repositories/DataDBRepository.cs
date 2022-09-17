@@ -3,6 +3,7 @@ using NPP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.Util;
@@ -27,8 +28,6 @@ namespace NPP.Repositories
             general.FIO = objgeneralToolModel.FIO;
             objNPPBASEEntities.Generals.Add(general);
             objNPPBASEEntities.SaveChanges();
-            int id = general.id;
-
             return true;
         }
     }

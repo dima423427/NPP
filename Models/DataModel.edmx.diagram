@@ -7,7 +7,7 @@
       <Diagram DiagramId="302d333218ec44c2a67d4316391c6eb7" Name="Diagram1" ShowGrid="true">
         <EntityTypeShape EntityType="NPPBASEModel.Tool" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NPPBASEModel.User" Width="1.5" PointX="4.625" PointY="0.875" />
-        <EntityTypeShape EntityType="NPPBASEModel.General" Width="1.5" PointX="6.25" PointY="0.625" />
+        <EntityTypeShape EntityType="NPPBASEModel.General" Width="1.5" PointX="6.5" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

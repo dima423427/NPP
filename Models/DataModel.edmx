@@ -5,8 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище NPPBASEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "NPPBASE.DataDB.General" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="General">
           <Key>
             <PropertyRef Name="id" />
@@ -32,16 +30,9 @@
           <Property Name="FIO" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="Хранилище NPPBASEModelContainer">
+          <EntitySet Name="General" EntityType="Self.General" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tool" EntityType="Self.Tool" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="General" EntityType="Self.General" store:Type="Tables" store:Schema="DataDB">
-            <DefiningQuery>SELECT 
-    [General].[id] AS [id], 
-    [General].[ToolName] AS [ToolName], 
-    [General].[CountTool] AS [CountTool], 
-    [General].[FIO] AS [FIO]
-    FROM [DataDB].[General] AS [General]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
