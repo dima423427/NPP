@@ -28,7 +28,7 @@ namespace NPP.Controllers
         {
             DataDBRepository objdataDBRepository = new DataDBRepository();
             objdataDBRepository.AddData(objgeneralToolModel);
-            return Json("Data Successfully",JsonRequestBehavior.AllowGet);
+            return Json(data:"Data Successfully",JsonRequestBehavior.AllowGet);
         }
     }
 }
