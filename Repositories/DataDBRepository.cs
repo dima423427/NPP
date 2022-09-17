@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.Web.Util;
 
 namespace NPP.Repositories
 {
@@ -19,7 +20,15 @@ namespace NPP.Repositories
 
         public bool AddData(GeneralToolModel objgeneralToolModel)
         {
-            
+            General general = new General();
+            general.id = objgeneralToolModel.id;
+            general.ToolName = objgeneralToolModel.ToolName;
+            general.CountTool = int.Parse(objgeneralToolModel.CountTool);
+            general.FIO = objgeneralToolModel.FIO;
+            objNPPBASEEntities.Generals.Add(general);
+            objNPPBASEEntities.SaveChanges();
+            int id = general.id;
+
             return true;
         }
     }
