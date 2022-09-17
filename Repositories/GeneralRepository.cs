@@ -16,19 +16,19 @@ namespace NPP.Repositories
             objNPPBASEEntities = new NPPBASEEntities();
         }
 
-        public IEnumerable<SelectListItem> GetAllGeneral()
+    /*    public IEnumerable<SelectListItem> GetAllGeneral()
         {
             var objSelectListItems = new List<SelectListItem>();
             objSelectListItems = (from obj in objNPPBASEEntities.Generals
                                   select new SelectListItem()
                                   {
-                                      /*     Text = obj.id,
+                                           Text = obj.
                                            Value = obj.id.ToString(),
-                                           Selected = true*/
+                                           Selected = true
 
                                   }).ToList();
 
             return objSelectListItems;
-        }
+        }*/
     }
 }

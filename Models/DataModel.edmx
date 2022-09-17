@@ -5,13 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище NPPBASEModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "NPPBASE.dbo.General" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="General">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Tool" Type="int" Nullable="false" />
-          <Property Name="Users" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToolName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountTool" Type="int" />
+          <Property Name="FIO" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Tool">
           <Key>
@@ -29,22 +32,21 @@
           <Property Name="FIO" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="Хранилище NPPBASEModelContainer">
-          <EntitySet Name="General" EntityType="Self.General" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tool" EntityType="Self.Tool" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="General" EntityType="Self.General" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [General].[id] AS [id], 
+    [General].[ToolName] AS [ToolName], 
+    [General].[CountTool] AS [CountTool], 
+    [General].[FIO] AS [FIO]
+    FROM [dbo].[General] AS [General]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NPPBASEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="General">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Tool" Type="Int32" Nullable="false" />
-          <Property Name="Users" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="Tool">
           <Key>
             <PropertyRef Name="id" />
@@ -54,9 +56,9 @@
           <Property Name="CountTool" Type="Int32" />
         </EntityType>
         <EntityContainer Name="NPPBASEEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Generals" EntityType="Self.General" />
           <EntitySet Name="Tools" EntityType="Self.Tool" />
           <EntitySet Name="Users" EntityType="NPPBASEModel.User" />
+          <EntitySet Name="Generals" EntityType="NPPBASEModel.General" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -65,21 +67,21 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="General">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountTool" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище NPPBASEModelContainer" CdmEntityContainer="NPPBASEEntities">
-          <EntitySetMapping Name="Generals">
-            <EntityTypeMapping TypeName="NPPBASEModel.General">
-              <MappingFragment StoreEntitySet="General">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Tool" ColumnName="Tool" />
-                <ScalarProperty Name="Users" ColumnName="Users" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tools">
             <EntityTypeMapping TypeName="NPPBASEModel.Tool">
               <MappingFragment StoreEntitySet="Tool">
@@ -93,6 +95,16 @@
             <EntityTypeMapping TypeName="NPPBASEModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generals">
+            <EntityTypeMapping TypeName="NPPBASEModel.General">
+              <MappingFragment StoreEntitySet="General">
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="CountTool" ColumnName="CountTool" />
+                <ScalarProperty Name="ToolName" ColumnName="ToolName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

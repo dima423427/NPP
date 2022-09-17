@@ -1,4 +1,5 @@
-﻿using NPP.Repositories;
+﻿using NPP.Models;
+using NPP.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,23 @@ namespace NPP.Controllers
             var objMultipleModels = new Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
                 (objuserRepository.GetAllUser(), objtoolRepository.GetAllTool(), objtoolRepository.GetCountTool());
             return View(objMultipleModels);
+        }
+
+        NPPBASEEntities nPPBASEEntities = new NPPBASEEntities();
+
+        [HttpPost]
+        public ActionResult AddDataDB(General model)
+        {
+            General obj = new General();
+            obj.id = model.id;
+            obj.ToolName = model.ToolName;
+            obj.CountTool = model.CountTool;
+            obj.FIO = model.FIO;
+
+            nPPBASEEntities.Generals.Add(obj);
+            nPPBASEEntities.SaveChanges();
+
+            return View("Index");
         }
     }
 }
