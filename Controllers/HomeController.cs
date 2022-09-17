@@ -1,5 +1,6 @@
 ﻿using NPP.Models;
 using NPP.Repositories;
+using NPP.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,21 +23,10 @@ namespace NPP.Controllers
             return View(objMultipleModels);
         }
 
-        NPPBASEEntities nPPBASEEntities = new NPPBASEEntities();
-
         [HttpPost]
-        public ActionResult AddDataDB(General model)
+        public JsonResult Index(GeneralToolModel objgeneralToolModel)
         {
-            General obj = new General();
-            obj.id = model.id;
-            obj.ToolName = model.ToolName;
-            obj.CountTool = model.CountTool;
-            obj.FIO = model.FIO;
-
-            nPPBASEEntities.Generals.Add(obj);
-            nPPBASEEntities.SaveChanges();
-
-            return View("Index");
+            return Json("",JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -11,6 +11,11 @@
         $("#btnAddToList").click(function () {
             AddToTheItemList();
         });
+
+        $("btnSaveIt").click(function () {
+            btnSave();
+        });
+
     });
 
     function AddToTheItemList() {                                          
@@ -42,6 +47,15 @@
 
     function RemoveItem(ToolID) {
         $(ToolID).closest('tr').remove();        /////////1.06.00
+    }
+
+    function btnSaveIt() {
+        var objgeneralToolModel = {};
+       // Items
+        objgeneralToolModel.ToolID = $("#Toolid").val();
+        objgeneralToolModel.ToolName = $("ToolName").val();
+        objgeneralToolModel.CountTool = $("#txtTotal").val();
+        objgeneralToolModel.FIO = $("#FIOName").val();
     }
 
 </script>
@@ -79,7 +93,7 @@
                 <div class="form-group">
                     ToolName :
                     @Html.DropDownList("ToolName", new SelectList(Model.Item2, "Value", "Text"),
-                        new { @class = "form-control", @id = "ToolName" })
+             new { @class = "form-control", @id = "ToolName" })
                 </div>
             </div>
 
@@ -87,7 +101,7 @@
                 <div class="form-group">
                     FIO :
                     @Html.DropDownList("Users", new SelectList(Model.Item1, "Value", "Text"),
-                         new { @class = "form-control", @id = "FIOName" })
+              new { @class = "form-control", @id = "FIOName" })
                 </div>
             </div>
 
