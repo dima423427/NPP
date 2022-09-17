@@ -24,7 +24,7 @@ namespace NPP.Repositories
             General general = new General();
             general.id = objgeneralToolModel.id;
             general.ToolName = objgeneralToolModel.ToolName;
-            general.CountTool = int.Parse(objgeneralToolModel.CountTool);
+          //  general.CountTool = int.Parse(objgeneralToolModel.CountTool);
             general.FIO = objgeneralToolModel.FIO;
             objNPPBASEEntities.Generals.Add(general);
             objNPPBASEEntities.SaveChanges();
