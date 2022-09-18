@@ -24,12 +24,12 @@ namespace NPP.Repositories
             General general = new General();
             general.id = objViewToolModels.Toolid;
             general.ToolName = objViewToolModels.ToolName;
-            //  general.CountTool = int.Parse(objgeneralToolModel.CountTool);
+            general.CountTool = objViewToolModels.CountTool;
             general.FIO = objuserToolModel.FIO;
             objNPPBASEEntities.Generals.Add(general);
             objNPPBASEEntities.SaveChanges();
             int id = general.id;
-
+         
             return true;
         }
     }
