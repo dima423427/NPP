@@ -19,13 +19,13 @@ namespace NPP.Repositories
             objNPPBASEEntities = new NPPBASEEntities();
         }
 
-        public bool AddData(GeneralToolModel objgeneralToolModel)
+        public bool AddData(ViewToolModel objViewToolModels, UserToolModel objuserToolModel, GeneralToolModel objgeneralToolModel)
         {
             General general = new General();
-            general.id = objgeneralToolModel.id;
-            general.ToolName = objgeneralToolModel.ToolName;
-          //  general.CountTool = int.Parse(objgeneralToolModel.CountTool);
-            general.FIO = objgeneralToolModel.FIO;
+            general.id = objViewToolModels.Toolid;
+            general.ToolName = objViewToolModels.ToolName;
+            //  general.CountTool = int.Parse(objgeneralToolModel.CountTool);
+            general.FIO = objuserToolModel.FIO;
             objNPPBASEEntities.Generals.Add(general);
             objNPPBASEEntities.SaveChanges();
             int Generalid = general.id;

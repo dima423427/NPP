@@ -24,11 +24,11 @@ namespace NPP.Controllers
         }
 
         [HttpPost]
-        public JsonResult Index(GeneralToolModel objgeneralToolModel)
+        public JsonResult Index(ViewToolModel objViewToolModels, UserToolModel objuserToolModel, GeneralToolModel objgeneralToolModel)
         {
             DataDBRepository objdataDBRepository = new DataDBRepository();
-            objdataDBRepository.AddData(objgeneralToolModel);
-            return Json(data:"Data Successfully",JsonRequestBehavior.AllowGet);
+            objdataDBRepository.AddData(objViewToolModels, objuserToolModel, objgeneralToolModel);
+            return Json(data: "Data Successfully", JsonRequestBehavior.AllowGet);
         }
     }
 }
