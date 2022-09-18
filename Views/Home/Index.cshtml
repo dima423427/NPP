@@ -1,4 +1,4 @@
-﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>> 
+﻿@model Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
 
 @{
     ViewBag.Title = "Index";
@@ -11,52 +11,16 @@
         $("#btnAddToList").click(function () {
             AddToTheItemList();
         });
-
-        $("#btnSaveIt").click(function () {
-            btnSaveIt();
-        });
-
     });
 
-    function AddToTheItemList() {                                          
-        var tbl = $("#tbl");
-        var ToolName = $("#ToolName").val();
-        var CountTool = $("#txtTotal").val();
-        var FIO = $("#FIOName").val();
-        var ToolID = $("#Toolid").val();
-        var ToolList = "<tr><td hidden>" +
-            ToolID +
-            "</td><td>" +
-            ToolName +
-            "</td><td>" +
-            CountTool +
-            "</td><td>" +
-            FIO +
-            "</td><td>  <input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)' /></tr></tr>";
-
-        tbl.append(ToolList);
-        ResetItem();
-    }
-
-    function ResetItem() {
-        $("#ToolName").val('');
-        $("#txtTotal").val('');
-        $("#FIOName").val('');
-        $("#Toolid").val(0);
-    }
-
-    function RemoveItem(ToolID) {
-        $(ToolID).closest('tr').remove();        
-    }
-
-    function btnSaveIt() {                                /////ПРОБЛЕМА ТУТ!!!! ЕСНИ НЕТ ЭТОГО КОДА, ТО ДАННЫЕ ЗАНОСЯТСЯ NULL ДАЖе в Input
-        var objgeneralToolModel = {};                      ////РЕШЕНИЕ: СОХРАНЯЕТ ДАННЫЕ ПОТОМУ ЧТО ВВЕДЕНЫ ИМЕННО ПОЛЯ,А НЕ ЯЧЕЙКИ БД
-       // Items
-        objgeneralToolModel.ToolID = $("#Toolid");
-        objgeneralToolModel.ToolName = $("#ToolName");
-        objgeneralToolModel.CountTool = $("#txtTotal");
-        objgeneralToolModel.FIO = $("#FIOName");
-
+    function AddToTheItemList() {
+        var objgeneralToolModel = {}
+        tbl = $("#tbl");
+        objgeneralToolModel.tbl = $("#tbl");
+        objgeneralToolModel.ToolName = $("#ToolName").val();
+        objgeneralToolModel.CountTool = $("#txtTotal").val();
+        objgeneralToolModel.FIO = $("#FIOName").val();
+        objgeneralToolModel.ToolID = $("#Toolid").val();
         objgeneralToolModel.ToolList = "<tr><td hidden>" +
             objgeneralToolModel.ToolID +
             "</td><td>" +
@@ -65,8 +29,7 @@
             objgeneralToolModel.CountTool +
             "</td><td>" +
             objgeneralToolModel.FIO +
-            "</td><td>"
-        "</tr ></tr >";
+            "</td><td>  <input type='button' value='Remove' name='remove' class='btn btn-danger' onclick='RemoveItem(this)' /></tr></tr>";
 
         $.ajax({
             async: true,
@@ -82,8 +45,21 @@
                 alert("чет не так");
             }
         });
+
+        objgeneralToolModel.tbl.append(objgeneralToolModel.ToolList);
+        //    ResetItem();
     }
 
+    function ResetItem() {
+        $("#ToolName").val('');
+        $("#txtTotal").val('');
+        $("#FIOName").val('');
+        $("#Toolid").val(0);
+    }
+
+    function RemoveItem(ToolID) {
+        $(ToolID).closest('tr').remove();
+    }
 </script>
 
 <style>
@@ -107,7 +83,7 @@
         border-radius: 4px;
         padding: 5px 5px 5px 10px;
         background-color: black;
-        color:white;
+        color: white;
     }
 </style>
 
@@ -117,7 +93,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    ToolName :
+                    Название инструмента :
                     @Html.DropDownList("ToolName", new SelectList(Model.Item2, "Value", "Text"),
              new { @class = "form-control", @id = "ToolName" })
                 </div>
@@ -125,7 +101,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    FIO :
+                    ФИО :
                     @Html.DropDownList("Users", new SelectList(Model.Item1, "Value", "Text"),
               new { @class = "form-control", @id = "FIOName" })
                 </div>
@@ -133,7 +109,7 @@
 
             <div class="col-md-4">
                 <div class="form-group">
-                    Total :
+                    Кол-во :
                     <input type="text" id="txtTotal" value="0" name="Total" class="form-control" />
                 </div>
 
@@ -161,21 +137,18 @@
                 </th>
 
                 <th>
-                    Tool Name
+                    Название инструмента
                 </th>
 
                 <th>
-                    Count Tool
+                    Кол-во инструмента
                 </th>
 
                 <th>
-                    FIO
+                    ФИО
                 </th>
+
             </tr>
         </thead>
     </table>
 </fieldset>
-
-<div style="margin-top: 50px">
-    <input type="button" style="float:right" value="Save" name="Save" id="btnSaveIt" class="btn btn-primary" />
-</div>

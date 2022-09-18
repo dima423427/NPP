@@ -30,5 +30,5 @@ namespace NPP.Controllers
             objdataDBRepository.AddData(objViewToolModels, objuserToolModel, objgeneralToolModel);
             return Json(data: "Data Successfully", JsonRequestBehavior.AllowGet);
         }
-    } /////////////ДАННЫЕ СЧИТЫВАЕТ ИЗ ПОЛЕЙ, ЧТО ПОСЛЕ ЗАНЕСЕНИЯ ОСТАЮТСЯ ПУСТЫМИ !!!!!!!!!!!!!!!!!!!!! ИСПРАВЬ
+    } 
 }
