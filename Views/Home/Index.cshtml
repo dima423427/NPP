@@ -50,12 +50,12 @@
     }
 
     function btnSaveIt() {                                /////ПРОБЛЕМА ТУТ!!!! ЕСНИ НЕТ ЭТОГО КОДА, ТО ДАННЫЕ ЗАНОСЯТСЯ NULL ДАЖе в Input
-        var objgeneralToolModel = {};
+        var objgeneralToolModel = {};                      ////РЕШЕНИЕ: СОХРАНЯЕТ ДАННЫЕ ПОТОМУ ЧТО ВВЕДЕНЫ ИМЕННО ПОЛЯ,А НЕ ЯЧЕЙКИ БД
        // Items
-        objgeneralToolModel.ToolID = $("#Toolid").val();
-        objgeneralToolModel.ToolName = $("#ToolName").val();
-        objgeneralToolModel.CountTool = $("#txtTotal").val();
-        objgeneralToolModel.FIO = $("#FIOName").val();
+        objgeneralToolModel.ToolID = $("#Toolid");
+        objgeneralToolModel.ToolName = $("#ToolName");
+        objgeneralToolModel.CountTool = $("#txtTotal");
+        objgeneralToolModel.FIO = $("#FIOName");
 
         objgeneralToolModel.ToolList = "<tr><td hidden>" +
             objgeneralToolModel.ToolID +
@@ -171,7 +171,6 @@
                 <th>
                     FIO
                 </th>
-
             </tr>
         </thead>
     </table>
