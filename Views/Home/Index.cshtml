@@ -49,7 +49,7 @@
         $(ToolID).closest('tr').remove();        
     }
 
-    function btnSaveIt() {
+    function btnSaveIt() {                                /////ПРОБЛЕМА ТУТ!!!! ЕСНИ НЕТ ЭТОГО КОДА, ТО ДАННЫЕ ЗАНОСЯТСЯ NULL ДАЖе в Input
         var objgeneralToolModel = {};
        // Items
         objgeneralToolModel.ToolID = $("#Toolid").val();
@@ -57,7 +57,7 @@
         objgeneralToolModel.CountTool = $("#txtTotal").val();
         objgeneralToolModel.FIO = $("#FIOName").val();
 
-      /*  objgeneralToolModel.ToolList = "<tr><td hidden>" +
+        objgeneralToolModel.ToolList = "<tr><td hidden>" +
             objgeneralToolModel.ToolID +
             "</td><td>" +
             objgeneralToolModel.ToolName +
@@ -66,8 +66,8 @@
             "</td><td>" +
             objgeneralToolModel.FIO +
             "</td><td>"
-            "</tr ></tr >";
-            */
+        "</tr ></tr >";
+
         $.ajax({
             async: true,
             type: 'POST',

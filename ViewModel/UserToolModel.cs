@@ -10,5 +10,7 @@ namespace NPP.ViewModel
         public int UserID { get; set; }
         public string FIO { get; set; }
 
+        public IEnumerable<UserToolModel> UserToolModels { get; set; }
+
     }
 }

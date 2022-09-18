@@ -12,5 +12,7 @@ namespace NPP.ViewModel
         public string ToolName { get; set; }
 
         public int CountTool { get; set; }
+
+        public IEnumerable<ViewToolModel> ViewToolModels { get; set; }
     }
 }
