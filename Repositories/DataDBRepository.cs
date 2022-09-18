@@ -28,7 +28,7 @@ namespace NPP.Repositories
             general.FIO = objuserToolModel.FIO;
             objNPPBASEEntities.Generals.Add(general);
             objNPPBASEEntities.SaveChanges();
-            int Generalid = general.id;
+            int id = general.id;
 
             return true;
         }
