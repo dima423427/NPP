@@ -57,6 +57,17 @@
         objgeneralToolModel.CountTool = $("#txtTotal").val();
         objgeneralToolModel.FIO = $("#FIOName").val();
 
+        objgeneralToolModel.ToolList = "<tr><td hidden>" +
+            objgeneralToolModel.ToolID +
+            "</td><td>" +
+            objgeneralToolModel.ToolName +
+            "</td><td>" +
+            objgeneralToolModel.CountTool +
+            "</td><td>" +
+            objgeneralToolModel.FIO +
+            "</td><td>"
+            "</tr ></tr >";
+
         $.ajax({
             async: true,
             type: 'POST',
