@@ -30,39 +30,6 @@ namespace NPP.Repositories
             objNPPBASEEntities.SaveChanges();
             int Generalid = general.id;
 
-         /*   Tool tool = new Tool();
-            tool.id = objgeneralToolModel.id;
-            tool.ToolName = objgeneralToolModel.ToolName;
-            tool.CountTool = int.Parse(objgeneralToolModel.CountTool);
-            objNPPBASEEntities.Tools.Add(tool);
-            objNPPBASEEntities.SaveChanges();
-            int toolid = general.id;
-
-            User user = new User();
-            user.id = objgeneralToolModel.id;
-            user.FIO = objgeneralToolModel.FIO;
-            objNPPBASEEntities.Users.Add(user);
-            objNPPBASEEntities.SaveChanges();
-            int userid = general.id;*/
-
-   /*         foreach (var item in objgeneralToolModel.GeneralToolModels)
-            {
-                Tool tool = new Tool();
-                tool.id = objgeneralToolModel.id;
-                tool.ToolName = objgeneralToolModel.ToolName;
-                tool.CountTool = int.Parse(objgeneralToolModel.CountTool);
-                objNPPBASEEntities.Tools.Add(tool);
-                objNPPBASEEntities.SaveChanges();
-                int toolid = general.id;
-
-                User user = new User();
-                user.id = objgeneralToolModel.id;
-                user.FIO = objgeneralToolModel.FIO;
-                objNPPBASEEntities.Users.Add(user);
-                objNPPBASEEntities.SaveChanges();
-                int userid = general.id;
-            }*/
-
             return true;
         }
     }
